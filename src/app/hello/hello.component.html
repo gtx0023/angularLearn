@@ -1,0 +1,48 @@
+<p [class]="'paragraph'">hello {{ name }}</p>
+
+<p [class.paragraph_attr]="true">hello {{ name }}</p>
+
+<ng-container *ngIf="isShowName; else elseNoNameTemplate">
+  <p [class]="'paragraph'">hello {{ name }}</p>
+</ng-container>
+<ng-template #elseNoNameTemplate>
+  <p [class]="'paragraph'">hello no name</p>
+</ng-template>
+
+
+<div *ngFor="let color of colors  let i=index let odd=odd">
+  <p [ngStyle]="{'color': color}">{{ color }} {{ i }} {{ odd }}</p>
+  <p [style.font-size.px]="12 * (1 + i/10)">{{ color }}</p>
+</div>
+
+<ng-template ngFor let-color [ngForOf]="colors" let-i="index" let-odd="odd">
+  <div>
+    <p [ngStyle]="{'color': color}">{{ color }} {{ i }} {{ odd }}</p>
+    <p [style.font-size.px]="12 * (1 + i/10)">{{ color }}</p>
+  </div>
+</ng-template>
+
+<br>
+<input #inp (input)="inpChange($event)">
+<button (click)="getInpValue(inp.value)">获取Inp值</button>
+
+<br>
+<br>
+<input type="text" [(ngModel)]="title"/>
+<p (click)="changeContent()">{{ title }}</p>
+<br>
+<p>动态表单</p>
+<input type="text" [formControl]="age"/>
+<p>{{ age.value }}</p>
+
+<br>
+<p>动态表单控件组</p>
+<form [formGroup]="loginForm">
+  <input formControlName="username">
+  <input formControlName="password">
+  <button (click)="submitForm()">提交</button>
+</form>
+
+<p>pipe管道</p>
+<p>{{ name | uppercase }}</p>
+<p>{{ dateStr | date:'yyyy-MM-dd' }}</p>

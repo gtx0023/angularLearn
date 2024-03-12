@@ -1,0 +1,6 @@
+<div>app</div>
+<app-hello></app-hello>
+<button (click)="changeType()">change B2C type</button>
+<button (click)="b2cViewAction()">viewChild Action</button>
+
+<app-b2c-communicate #b2cEle [type]="b2cType" (typeChange)="onTypeChange($event)"></app-b2c-communicate>
