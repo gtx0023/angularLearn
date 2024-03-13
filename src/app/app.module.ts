@@ -8,6 +8,7 @@ import {B2cCommunicateComponent} from './b2c-communicate/b2c-communicate.compone
 
 import {ListService} from '@/service/list.service';
 import {LogService} from '@/service/log.service';
+import {RoutingModule} from "@app/routing/routing.module";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {LogService} from '@/service/log.service';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RoutingModule
   ],
   providers: [ListService, LogService],
   bootstrap: [AppComponent]

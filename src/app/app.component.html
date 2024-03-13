@@ -1,6 +1,6 @@
 <div>app</div>
-<app-hello></app-hello>
-<button (click)="changeType()">change B2C type</button>
-<button (click)="b2cViewAction()">viewChild Action</button>
+<router-outlet></router-outlet>
 
-<app-b2c-communicate #b2cEle [type]="b2cType" (typeChange)="onTypeChange($event)"></app-b2c-communicate>
+<a [routerLink]="['/hello']" routerLinkActive="routerLinkActive">home</a>
+<br>
+<a [routerLink]="['/b2c']" [queryParams]="{id: 3, title: 'b2c'}" routerLinkActive="routerLinkActive">b2c</a>

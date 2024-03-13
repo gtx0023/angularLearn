@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, KeyValueChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ListService} from '@/service/list.service';
 import {LogService} from '@/service/log.service';
+import {ActivatedRoute} from "@angular/router";
+
 @Component({
   selector: 'app-b2c-communicate',
   templateUrl: './b2c-communicate.component.html',
@@ -15,13 +17,15 @@ export class B2cCommunicateComponent implements OnInit {
 
   list: Array<string> = [];
   logArray: Array<string> = [];
+  queryParams: any;
 
-  constructor(private listService: ListService, private logService: LogService) {
+  constructor(private listService: ListService, private logService: LogService, private rouerInfo: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.list = this.listService.getList();
     this.logArray = this.logService.getLog();
+    this.queryParams = this.rouerInfo.snapshot.queryParams;
   }
 
   ngOnChanges(changes: KeyValueChanges<string, any>): void {
@@ -37,4 +41,6 @@ export class B2cCommunicateComponent implements OnInit {
   addItem(): void {
     this.listService.addListItem(Math.random().toString(36).substr(2, 5));
   }
+
+  protected readonly JSON = JSON;
 }
