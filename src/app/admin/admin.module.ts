@@ -3,6 +3,9 @@ import {CommonModule} from '@angular/common';
 import {AdminComponent} from './admin/admin.component';
 import {AuthComponent} from './auth/auth.component';
 import {RouterModule} from "@angular/router";
+import {AddFormComponent} from './add-form/add-form.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {BrowserModule} from "@angular/platform-browser";
 
 
 let routes = RouterModule.forChild([
@@ -23,11 +26,15 @@ let routes = RouterModule.forChild([
 @NgModule({
   declarations: [
     AdminComponent,
-    AuthComponent
+    AuthComponent,
+    AddFormComponent
   ],
   imports: [
     CommonModule,
-    routes
+    routes,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule {
