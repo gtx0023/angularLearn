@@ -9,11 +9,20 @@ import {AddFormControl, AddFormGroup} from "@app/model/form.model";
 })
 export class AddFormComponent implements OnInit {
 
-  formGroup: FormGroup = new AddFormGroup();
+  newForm: any = {};
+  formSubmitted: boolean = false;
+  formGroup: AddFormGroup = new AddFormGroup();
   constructor() {
   }
 
   ngOnInit(): void {
   }
 
+  submitForm() {
+    Object.keys(this.formGroup.controls).forEach(c => this.newForm[c] = this.formGroup.controls[c].value);
+    this.formSubmitted = true;
+    if(this.formGroup.valid) {
+      console.log(this.newForm);
+    }
+  }
 }

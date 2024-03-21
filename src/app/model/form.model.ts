@@ -64,11 +64,11 @@ export class AddFormGroup extends FormGroup {
   get AddFormControls(): AddFormControl[] {
     return Object.keys(this.controls).map(k => this.controls[k] as AddFormControl);
   }
-  get ValidationMessages(): string[] {
-    return (this.controls['name'] as AddFormControl).getValidationMessages();
+  getValidationMessages(name: string): string[] {
+    return (this.controls[name] as AddFormControl).getValidationMessages();
   }
 
-  get AddFormValidationMessages(): string[] {
+  getAddFormValidationMessages(): string[] {
     let messages: string[] = [];
     Object.values(this.controls).forEach(c => {
       messages.push(...(c as AddFormControl).getValidationMessages());
