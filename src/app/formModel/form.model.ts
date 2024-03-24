@@ -1,4 +1,5 @@
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {CheckNumberValidator} from "./validator/CheckNumber"
 
 export class AddFormControl extends FormControl {
   label: string;
@@ -33,6 +34,8 @@ export class AddFormControl extends FormControl {
           case "phone":
             messages.push(`Not a valid ${this.label}`);
             break;
+          case "limit":
+            messages.push(`A ${this.label} cannot be more than ${this.errors['limit'].limit}`)
         }
       }
     }
@@ -44,6 +47,11 @@ export class AddFormGroup extends FormGroup {
   constructor() {
     super({
       name: new AddFormControl('Name', 'name', '', Validators.required),
+      age: new AddFormControl("Age", 'age', '', Validators.compose([
+        Validators.required,
+        CheckNumberValidator.Limit(140),
+        Validators.pattern("^[0-9\.]+$")
+      ])),
       email: new AddFormControl('Email', 'email', '',
         Validators.compose([
           Validators.required,
@@ -64,6 +72,7 @@ export class AddFormGroup extends FormGroup {
   get AddFormControls(): AddFormControl[] {
     return Object.keys(this.controls).map(k => this.controls[k] as AddFormControl);
   }
+
   getValidationMessages(name: string): string[] {
     return (this.controls[name] as AddFormControl).getValidationMessages();
   }

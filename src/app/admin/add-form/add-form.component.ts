@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm, FormGroup} from "@angular/forms";
-import {AddFormControl, AddFormGroup} from "@app/model/form.model";
+import {AddFormControl, AddFormGroup} from "@app/formModel/form.model";
 
 @Component({
   selector: 'app-add-form',
