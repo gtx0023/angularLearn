@@ -19,6 +19,16 @@
     </ul>
   </div>
   <div class="form-group">
+    <label>Age</label>
+    <input type="text" class="form-control" name="age" formControlName="age">
+    <ul class="text-danger list-unstyled"
+        *ngIf="(formSubmitted || formGroup.controls['age'].dirty) && formGroup.controls['age'].invalid">
+      <li *ngFor="let error of formGroup.getValidationMessages('age')">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+  <div class="form-group">
     <label>Email</label>
     <input type="text" class="form-control" name="email" formControlName="email">
     <ul class="text-danger list-unstyled"
